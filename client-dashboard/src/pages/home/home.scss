@@ -1,0 +1,32 @@
+.home {
+    display: flex;
+    color: black;
+    background-color: rgba(201, 161, 115);
+    
+    .homeContainer { 
+        flex: 6;
+
+    .widgets, .charts {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .charts { 
+        padding: 5px 20px;
+    }
+
+    .listContainer { 
+        padding: 20px;
+        box-shadow: 1px 0px 27px -1px #353434d8;
+        margin: 20px;
+        background-color: #ffe0bd;
+        .listContainer_title { 
+            color: #000;
+            font-size: 25px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+    }
+    }
+}
