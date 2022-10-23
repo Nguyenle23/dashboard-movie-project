@@ -2,17 +2,14 @@
     flex: 5;
     box-shadow: 1px 0px 27px -1px #7d7d7d27;
     padding: 10px;
-    color: #555;
+    color: #000;
     display: flex;
     align-items: center;
     flex-direction: column;
-
     .title { 
         font-size: 20px;
         font-weight: 500;
         margin-bottom: 20px;
         align-self: start;
     }
-
-
 }

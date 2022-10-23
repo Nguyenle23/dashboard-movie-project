@@ -27,8 +27,6 @@ function App() {
     "December"
   ]; 
 
-  // const [ userState, setUserState ] = useState([])
-  
   return (
     <div className="app">
       <BrowserRouter>

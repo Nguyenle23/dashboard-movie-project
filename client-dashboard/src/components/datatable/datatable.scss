@@ -1,23 +1,26 @@
 .datatable { 
-    margin: 5px 20px;
+    margin: 12px 15px;
     padding: 20px;
-
+    box-shadow: 1px 0px 27px -1px rgb(53 52 52 / 85%);
     .datatable_add { 
         width: 100%;
         font-size: 18px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
-
+        
         .datatable_addnew { 
             padding: 5px;
-            margin-right: 10px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background-color: #7d6724e5;
+            font-size: 15px;
+            color: #000;
+            border: 1px solid;
+            border-radius: 10px;
             cursor: pointer;
-            color: rgba(153, 12, 12, 0.937);
-            font-size: 12px;
-            border: 1px solid rgba(153, 12, 12, 0.45);
-            border-radius: 5px;
+            &:hover { 
+                background-color: #7d6724;
+            }
         }
     }
 

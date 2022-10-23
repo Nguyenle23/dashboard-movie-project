@@ -1,7 +1,14 @@
 import "./datatable.scss";
 import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
+import {
+  DataGrid,
+  gridPageCountSelector,
+  gridPageSelector,
+  useGridApiContext,
+  useGridSelector,
+} from "@mui/x-data-grid";
+import Pagination from '@mui/material/Pagination';
 
 function Datatable() {
   const userRows = [
@@ -225,7 +232,29 @@ function Datatable() {
         );
       },
     },
+    {
+      field: "subscription",
+      headerName: "Subscription",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
   ];
+
+  function CustomPagination() {
+    const apiRef = useGridApiContext();
+    const page = useGridSelector(apiRef, gridPageSelector);
+    const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+    return (
+      <Pagination
+        color= "secondary"
+        count={pageCount}
+        page={page + 1}
+        onChange={(event, value) => apiRef.current.setPage(value - 1)}
+      />
+    );
+  }
 
   return (
     <div className="datatable">
@@ -238,13 +267,16 @@ function Datatable() {
           ADD NEW USER
         </Link>
       </div>
-      <div style={{ height: "80vh", width: "100%" }}>
+      <div style={{ height: "75vh", width: "100%" }}>
         <DataGrid
           rows={userRows}
           columns={userColumns.concat(actionColumn)}
-          pageSize={12}
+          pageSize={10}
           rowsPerPageOptions={[12]}
           pagination
+          components={{
+            Pagination: CustomPagination,
+          }}
           sx={{
             fontSize: "15px",
             bgcolor: "#baffc9",
