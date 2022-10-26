@@ -1,4 +1,43 @@
-// .table { 
-//     color: #000;
-    
-// }
+.productStatus {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #1f7a4e;
+  color: #000;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.active {
+  background-color: #22b42e;
+  color: #000;
+}
+
+.active:hover {
+  background-color: #1d8c26;
+  color: #000;
+}
+
+.inactive {
+  background-color: #ff0000;
+  color: #000;
+}
+
+.inactive:hover {
+  background-color: #c21212;
+  color: #000;
+}
+
+.productListEdit {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #1f7a4e;
+  color: #000;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.productListEdit:hover {
+  background-color: #2a9d5f;
+}

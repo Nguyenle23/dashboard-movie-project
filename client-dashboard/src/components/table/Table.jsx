@@ -1,5 +1,5 @@
-import "./table.scss";
-import * as React from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   DataGrid,
   gridPageCountSelector,
@@ -7,171 +7,113 @@ import {
   useGridApiContext,
   useGridSelector,
 } from "@mui/x-data-grid";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 
-function Table() {
-  const [pageSize, setPageSize] = React.useState(5);
+import "./table.scss";
+import { fetchMovies } from "../../actions";
+
+export default function Table() {
+  const [movie, setMovie] = useState([]);
+
   const columns = [
     {
-      field: "id",
+      field: "_id",
       headerName: "ID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+      renderCell: (params) => {
+        return (
+          <div className="productListItem">
+            {params.row.id}
+          </div>
+        );
+      },
+    },
+    {
+      field: "title",
+      headerName: "Movie",
+      width: 220,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
+    {
+      field: "genre",
+      headerName: "Genre",
+      width: 226,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
+    {
+      field: "year",
+      headerName: "Year",
+      width: 102,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
+    {
+      field: "limit",
+      headerName: "Limit",
+      width: 108,
+      headerClassName: "super-app-theme--header",
+      cellClassName: "super-app-theme--cell",
+    },
+    {
+      field: "duration",
+      headerName: "Duration",
       width: 130,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
     },
     {
-      field: "firstName",
-      headerName: "First name",
-      width: 160,
+      field: "isSeries",
+      headerName: "Is Series",
+      width: 125,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
+      renderCell: (params) => {
+        return (
+          <>
+            {params.row.isSeries ? (
+              <span className="productStatus active">True</span>
+            ) : (
+              <span className="productStatus inactive">False</span>
+            )}
+          </>
+        );
+      },
     },
     {
-      field: "lastName",
-      headerName: "Last name",
-      width: 160,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "fullName",
-      headerName: "Full name",
-      description: "This column has a value getter and is not sortable.",
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "method",
-      headerName: "Method",
-      description: "This column has a value getter and is not sortable.",
-      width: 160,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 160,
-      headerClassName: "super-app-theme--header",
-      cellClassName: "super-app-theme--cell",
-    },
-    {
-      field: "price",
-      headerName: "Price",
+      field: "action",
+      headerName: "Action",
       width: 120,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={{ pathname: "/product/" + params.row.id, movie: params.row }} >
+              <button className="productListEdit">Edit</button>
+            </Link>
+          </>
+        );
+      },
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      lastName: "Snow",
-      firstName: "Jon",
-      age: 35,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 2,
-      lastName: "Lannister",
-      firstName: "Cersei",
-      age: 45,
-      method: "Mastercard",
-      status: "Active",
-    },
-    {
-      id: 3,
-      lastName: "Stark",
-      firstName: "Robb",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 4,
-      lastName: "Stark",
-      firstName: "Sansa",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 5,
-      lastName: "Stark",
-      firstName: "Arya",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 6,
-      lastName: "Stark",
-      firstName: "Bran",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 7,
-      lastName: "Stark",
-      firstName: "Rickon",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 8,
-      lastName: "Stark",
-      firstName: "Joffrey",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 9,
-      lastName: "Stark",
-      firstName: "Tyrion",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 10,
-      lastName: "Stark",
-      firstName: "Sandor",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-    {
-      id: 11,
-      lastName: "Stark",
-      firstName: "Eddard",
-      age: 18,
-      method: "Visa",
-      status: "Active",
-    },
-  ];
+  useEffect(() => {
+    const getMovies = async () => {
+      fetchMovies().then((response) => {
+        setMovie(response.data);
+      });
+    };
+    getMovies();
+  }, []);
 
   function CustomPagination() {
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
     return (
       <Pagination
         color= "secondary"
@@ -183,14 +125,23 @@ function Table() {
   }
 
   return (
-    <div className="table" style={ {fontFamily:"Segoe UI"} }>
+    <div className="table" style={{ fontFamily: "Segoe UI" }}>
       <div style={{ height: "70vh", width: "100%" }}>
         <DataGrid
-          rows={rows}
+          rows={movie.map((item, index) => {
+            return {
+              id: index,
+              title: item.title,
+              genre: item.genre,
+              year: item.year,
+              limit: item.limit,
+              duration: item.duration,
+              isSeries: item.series,
+            };
+          })}
           columns={columns}
-          pageSize={10}
-          // onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          // rowsPerPageOptions={[8, 16, 24]}
+          pageSize={8}
+          rowsPerPageOptions={[8, 16, 24]}
           pagination
           components={{
             Pagination: CustomPagination,
@@ -218,5 +169,3 @@ function Table() {
     </div>
   );
 }
-
-export default Table;

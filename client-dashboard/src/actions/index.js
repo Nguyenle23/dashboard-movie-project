@@ -41,12 +41,8 @@ export const checkLogin = async(user) => {
 //-----------------movie------------
 
 //fetch all movies
-export const fetchMovies = async(data) => {
-    const request = await axios.get(`http://localhost:5555/movie/`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
+export const fetchMovies = async() => {
+    const request = await axios.get("http://localhost:8080/movies")
     return request;
 }
 
