@@ -11,6 +11,6 @@ public interface MovieRepository extends MongoRepository<Movie, ObjectId> {
 
     Movie findOneMovieByTitle(String title);
 
-    Movie deleteMovieByTitle(String title);
+    void deleteMovieByTitle(String title);
 
 }

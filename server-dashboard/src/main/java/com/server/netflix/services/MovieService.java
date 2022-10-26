@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +16,10 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public Movie getMovie(String title) {
+        return movieRepository.findOneMovieByTitle(title);
+    }
+
     public Movie createMovie(){
         return movieRepository.insert(new Movie(
                 "test1",
@@ -26,7 +28,7 @@ public class MovieService {
                 false,
                 "test1 description",
                 "test1 genre",
-                "test1 Imagetitle",
+                "test1 Image title",
                 "test1 limit",
                 "test1 thumbnail",
                 "test1 trailer",

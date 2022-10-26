@@ -23,6 +23,7 @@ public class Movie {
     private String video;
     private String year;
     private String duration;
+
     public Movie(String title, String img, boolean isSeries, boolean isDestroy, String description, String genre, String imgTitle, String limit, String thumbnail, String trailer, String video, String year, String duration) {
         this.title = title;
         this.img = img;
@@ -42,7 +43,6 @@ public class Movie {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-
 
     public void setLimit(String limit) {
         this.limit = limit;

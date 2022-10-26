@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class MovieController {
     private final MovieService movieService;
 
@@ -17,12 +18,19 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
+    @GetMapping("/movie/{title}")
+    public Movie getMovie(
+            @PathVariable("title") String title
+    ) {
+        return movieService.getMovie(title);
+    }
+
     @PostMapping("/movie")
     public Movie createMovie() {
         return movieService.createMovie();
     }
 
-    @PutMapping("movie/update/{title}")
+    @PutMapping("/movie/update/{title}")
     public void updateMovie(
             @PathVariable("title") String title,
             @RequestParam(required = false) String genre,
@@ -31,7 +39,7 @@ public class MovieController {
         movieService.updateMovie(title, genre, limit);
     }
 
-    @DeleteMapping("movie/{title}")
+    @DeleteMapping("/movie/{title}")
     public void removeMovie(@PathVariable("title") String title) {
         movieService.deleteMovie(title);
     }
