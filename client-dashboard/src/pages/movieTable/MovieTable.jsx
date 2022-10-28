@@ -9,10 +9,10 @@ import {
 } from "@mui/x-data-grid";
 import Pagination from "@mui/material/Pagination";
 
-import "./table.scss";
+import "./movieTable.scss";
 import { fetchMovies } from "../../actions";
 
-export default function Table() {
+export default function MovieTable() {
   const [movie, setMovie] = useState([]);
 
   const columns = [
@@ -125,8 +125,17 @@ export default function Table() {
   }
 
   return (
-    <div className="table" style={{ fontFamily: "Segoe UI" }}>
-      <div style={{ height: "70vh", width: "100%" }}>
+    <div className="datatable">
+      <div className="datatable_add">
+        <Link
+          to="/movie/new"
+          style={{ textDecoration: "none" }}
+          className="datatable_addnew"
+        >
+          New movie
+        </Link>
+      </div>
+      <div style={{ height: "75vh", width: "100%" }}>
         <DataGrid
           rows={movie.map((item, index) => {
             return {
@@ -141,7 +150,7 @@ export default function Table() {
           })}
           columns={columns}
           pageSize={8}
-          rowsPerPageOptions={[8, 16, 24]}
+          rowsPerPageOptions={[12]}
           pagination
           components={{
             Pagination: CustomPagination,

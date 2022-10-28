@@ -1,7 +1,4 @@
-import "./datatable.scss";
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import "./userTable.scss";
 import {
   DataGrid,
   gridPageCountSelector,
@@ -9,16 +6,72 @@ import {
   useGridApiContext,
   useGridSelector,
 } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
+import { useEffect, useContext } from "react";
 import Pagination from "@mui/material/Pagination";
-import { fetchAllUser } from "../../actions";
 
-export default function Datatable() {
-  const [allUser, setAllUser] = useState([]);
-  const [userData, setUserData] = useState({});
-  
-  const location = useLocation();
-  console.log(location);
-  // const dataUser = setLocation.state.allUser;
+import { UserContext } from "../../context/userContext/UserContext";
+import { getUsers, deleteUsers } from "../../context/userContext/apiCall";
+
+export default function UserTable() {
+  const { users, dispatch } = useContext(UserContext);
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
+
+  // const handleDelete = (id) => {
+  //   deleteUsers(id, dispatch);
+  // };
+
+  // const columns = [
+  //   { field: "_id", headerName: "ID", width: 200 },
+  //   // {
+  //   //   field: "user",
+  //   //   headerName: "Avatar",
+  //   //   width: 120,
+  //   //   renderCell: (params) => {
+  //   //     return (
+  //   //       <div className="userListUser">
+  //   //         <img className="userListImg" src={params.row.avatar || "https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg"} alt="" />
+  //   //         {params.row.username}
+  //   //       </div>
+  //   //     );
+  //   //   },
+  //   // },
+  //   { field: "fullname", headerName: "Full name", width: 150 },
+  //   { field: "email", headerName: "Email", width: 200 },
+  //   { field: "gender", headerName: "Gender", width: 130 },
+  //   // { field: "location", headerName: "Location", width: 130 },
+  //   {
+  //     field: "isActive",
+  //     headerName: "Is Active",
+  //     width: 140,
+  //   },
+  //   {
+  //     field: "price",
+  //     headerName: "Total price",
+  //     width: 140,
+  //   },
+  //   {
+  //     field: "action",
+  //     headerName: "Action",
+  //     width: 130,
+  //     // renderCell: (params) => {
+  //     //   return (
+  //     //     <>
+  //     //       <Link to={{pathname: "/user/" + params.row._id, users: params.row}}>
+  //     //         <button className="userListEdit">Edit</button>
+  //     //       </Link>
+  //     //       {/* <DeleteOutline
+  //     //         className="userListDelete"
+  //     //         onClick={() => handleDelete(params.row._id)}
+  //     //       /> */}
+  //     //     </>
+  //     //   );
+  //     // },
+  //   },
+  // ];
 
   const column = [
     {
@@ -100,7 +153,8 @@ export default function Datatable() {
         return (
           <div className="cellAction">
             <Link
-              to={{ pathname: "/user/" + params.row.id, userData: params.row }}
+              to={{ pathname: "/user/" + params.row.id}} 
+              state={{ users: params.row }}
               style={{ textDecoration: "none" }}
             >
               <div className="cellAction_view">View</div>
@@ -111,15 +165,6 @@ export default function Datatable() {
       },
     },
   ];
-
-  useEffect(() => {
-    const getAllUsers = async () => {
-      fetchAllUser().then((response) => {
-        setAllUser(response.data);
-      });
-    };
-    getAllUsers();
-  }, []);
 
   function CustomPagination() {
     const apiRef = useGridApiContext();
@@ -144,12 +189,12 @@ export default function Datatable() {
           style={{ textDecoration: "none" }}
           className="datatable_addnew"
         >
-          ADD NEW USER
+          New user
         </Link>
       </div>
       <div style={{ height: "75vh", width: "100%" }}>
         <DataGrid
-          rows={allUser.map((user, index) => {
+          rows={users.map((user, index) => {
             return {
               id: index,
               email: user.email,

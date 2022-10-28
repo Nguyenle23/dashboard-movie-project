@@ -9,22 +9,14 @@ import {
     getUserSuccess,
     getUserStart
 } from "./UserAction";
-import { getAllUser, upgradeUser, removeUser } from '../../actions/index'
+import { fetchAllUser, upgradeUser, removeUser } from '../../actions/index'
 
 //get all users registered
 export const getUsers = async(dispatch) => {
     dispatch(getUserStart());
     try {
-        getAllUser().then((res) => {
-            var render
-            const userData = res.data
-            for (var i of userData) {
-                if (i.isDestroy === true) {
-                    render = userData.filter(user => user.isDestroy === false)
-                }
-                render = userData.filter(user => user.isDestroy === false)
-            }
-            dispatch(getUserSuccess(render));
+        fetchAllUser().then((res) => {
+            dispatch(getUserSuccess(res.data));
         })
     } catch (err) {
         dispatch(getUserFailure());

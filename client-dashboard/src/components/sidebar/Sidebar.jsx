@@ -40,10 +40,12 @@ const Sidebar = () => {
                         <span>Users</span>
                     </li>
                 </Link>
-                <li>
+                <Link to="/movie" style={{ textDecoration: "none" }}>
+                    <li>
                     <InventoryIcon className='center_logo' />
-                    <span>Products</span>
-                </li>
+                    <span>Movies</span>
+                    </li>
+                </Link>
                 <p className="title">STATISTIC</p>
                 <li>
                     <UpcomingIcon className='center_logo' />

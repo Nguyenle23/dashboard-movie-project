@@ -1,12 +1,13 @@
+
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
 
-export const Single = () => {
+export default function Single() {
+
   return (
-    
     <div className="single">
         <Sidebar/>
         <div className='single_container'>
@@ -51,5 +52,3 @@ export const Single = () => {
     </div>
   )
 }
-
-export default Single

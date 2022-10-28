@@ -121,12 +121,8 @@ export const removeList = async(id) => {
 //-------------user-------------
 
 //get all user
-export const getAllUser = async() => {
-    const request = await axios.get(`http://localhost:5555/user/getAll`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
+export const fetchAllUser = async() => {
+    const request = await axios.get("http://localhost:8080/users");
     return request;
 }
 
