@@ -1,4 +1,4 @@
-import "./userTable.scss";
+// import "./userTable.scss";
 import {
   DataGrid,
   gridPageCountSelector,
@@ -135,6 +135,17 @@ export default function UserTable() {
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       width: 100,
+      renderCell: (params) => {
+        return (
+          <>
+            {params.row.destroy ? (
+              <span className="productStatus active">True</span>
+            ) : (
+              <span className="productStatus inactive">False</span>
+            )}
+          </>
+        );
+      },
     },
     {
       field: "admin",
@@ -142,6 +153,17 @@ export default function UserTable() {
       width: 100,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
+      renderCell: (params) => {
+        return (
+          <>
+            {params.row.admin ? (
+              <span className="productStatus active">True</span>
+            ) : (
+              <span className="productStatus inactive">False</span>
+            )}
+          </>
+        );
+      },
     },
     {
       field: "action",
@@ -185,7 +207,7 @@ export default function UserTable() {
     <div className="datatable">
       <div className="datatable_add">
         <Link
-          to="/user/new"
+          to="/user/createUser"
           style={{ textDecoration: "none" }}
           className="datatable_addnew"
         >

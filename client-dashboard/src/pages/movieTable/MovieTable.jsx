@@ -9,7 +9,7 @@ import {
 } from "@mui/x-data-grid";
 import Pagination from "@mui/material/Pagination";
 
-import "./movieTable.scss";
+// import "./movieTable.scss";
 import { fetchMovies } from "../../actions";
 
 export default function MovieTable() {
@@ -23,11 +23,7 @@ export default function MovieTable() {
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            {params.row.id}
-          </div>
-        );
+        return <div className="productListItem">{params.row.id}</div>;
       },
     },
     {
@@ -92,7 +88,10 @@ export default function MovieTable() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={{ pathname: "/product/" + params.row.id, movie: params.row }} >
+            <Link
+              to={{ pathname: "/movie/" + params.row.id }}
+              state={{ movie: params.row }}
+            >
               <button className="productListEdit">Edit</button>
             </Link>
           </>
@@ -116,7 +115,7 @@ export default function MovieTable() {
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
     return (
       <Pagination
-        color= "secondary"
+        color="secondary"
         count={pageCount}
         page={page + 1}
         onChange={(event, value) => apiRef.current.setPage(value - 1)}
@@ -128,7 +127,7 @@ export default function MovieTable() {
     <div className="datatable">
       <div className="datatable_add">
         <Link
-          to="/movie/new"
+          to="/movie/createMovie"
           style={{ textDecoration: "none" }}
           className="datatable_addnew"
         >

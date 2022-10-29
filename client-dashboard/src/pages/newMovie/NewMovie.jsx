@@ -1,22 +1,22 @@
-import "./newUser.scss";
+import "./newMovie.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { UserContext } from "../../context/userContext/UserContext";
-// import { createUser } from "../../context/userContext/apiCall";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { createMovie } from "../../context/movieContext/apiCall";
 import { useState, useContext } from "react";
 
-export default function NewUser() {
-  const [user, setUser] = useState(null);
-  const { dispatch } = useContext(UserContext);
+export default function NewMovie() {
+  const [movie, setMovie] = useState(null);
+  const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
     const value = e.target.value;
-    setUser({ ...user, [e.target.name]: value });
+    setMovie({ ...movie, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // createUser(user, dispatch);
+    createMovie(movie, dispatch);
     // history.push("/movies");
   };
 
@@ -26,65 +26,72 @@ export default function NewUser() {
       <div className="new_container">
         <Navbar />
         <div className="new_container_top">
-          <h1 className="top_tilte">Create User</h1>
+          <h1 className="top_tilte">Create Movie</h1>
         </div>
         <div className="new_container_bottom">
           <div className="bottom_left">
-            <img src={"https://i.pinimg.com/564x/9e/46/c7/9e46c7ebe515311bf97b0d72143ae41a.jpg"} alt="avt_add" className="left_img"/>
+            <img
+              src={
+                "https://i.pinimg.com/564x/9e/46/c7/9e46c7ebe515311bf97b0d72143ae41a.jpg"
+              }
+              alt="avt_add"
+              className="left_img"
+            />
           </div>
           <div className="bottom_right">
             <form>
               <div className="formInput">
-                <label>Your name:</label>
+                <label>Title</label>
                 <input
                   type="text"
-                  placeholder="Your name"
-                  name="name"
+                  placeholder="Title"
+                  name="title"
                   onChange={handleChange}
                 />
               </div>
               <div className="formInput">
-                <label>Email:</label>
+                <label>Genre</label>
                 <input
                   type="text"
-                  placeholder="Your email"
-                  name="email"
+                  placeholder="Genre"
+                  name="genre"
                   onChange={handleChange}
                 />
               </div>
               <div className="formInput">
-                <label>Phone number:</label>
+                <label>Year</label>
                 <input
                   type="text"
-                  placeholder="Phone number"
-                  name="phone"
+                  placeholder="Year"
+                  name="year"
                   onChange={handleChange}
                 />
               </div>
               <div className="formInput">
-                <label>Gender</label>
+                <label>Limit</label>
                 <input
                   type="text"
-                  placeholder="Gender"
-                  name="gender"
+                  placeholder="Limit"
+                  name="limit"
                   onChange={handleChange}
                 />
               </div>
               <div className="formInput">
-                <label>Password:</label>
+                <label>Duration</label>
                 <input
                   type="text"
-                  placeholder="Your password"
-                  name="password"
+                  placeholder="Duration"
+                  name="duration"
                   onChange={handleChange}
                 />
               </div>
               <div className="formInput">
-                <label>Is Admin</label>
+                <label>Is Serires ?</label>
                 <input
                   type="text"
                   placeholder="Yes/No"
-                  name="admin"
+                  name="isSeries"
+                  id="isSeries"
                   onChange={handleChange}
                 />
               </div>
@@ -95,5 +102,4 @@ export default function NewUser() {
       </div>
     </div>
   );
-};
-
+}
