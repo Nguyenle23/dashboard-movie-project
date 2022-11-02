@@ -1,47 +1,50 @@
 package com.server.netflix.controllers;
 
 import com.server.netflix.models.Movie;
-import com.server.netflix.services.MovieService;
+import com.server.netflix.services.MovieServiceImpl;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @CrossOrigin
 public class MovieController {
-    private final MovieService movieService;
+    private final MovieServiceImpl movieServiceImpl;
 
     @GetMapping("/movies")
     public List<Movie> getAllMovie() {
-        return movieService.getAllMovies();
+        return movieServiceImpl.getAllMovies();
     }
 
-    @GetMapping("/movie/{title}")
-    public Movie getMovie(
-            @PathVariable("title") String title
+    @GetMapping("/movie/{id}")
+    public Optional<Movie> getMovie(
+            @PathVariable("id") ObjectId id
     ) {
-        return movieService.getMovie(title);
+        return movieServiceImpl.getMovieById(id);
     }
 
     @PostMapping("/movie")
-    public Movie createMovie() {
-        return movieService.createMovie();
-    }
-
-    @PutMapping("/movie/update/{title}")
-    public void updateMovie(
-            @PathVariable("title") String title,
-            @RequestParam(required = false) String genre,
-            @RequestParam(required = false) String limit
+    public Movie createMovie(
+            @RequestBody Movie movie
     ) {
-        movieService.updateMovie(title, genre, limit);
+        return movieServiceImpl.createMovie(movie);
     }
 
-    @DeleteMapping("/movie/{title}")
-    public void removeMovie(@PathVariable("title") String title) {
-        movieService.deleteMovie(title);
+    @PutMapping("/movie/update/{id}")
+    public void updateMovie(
+            @PathVariable("id") ObjectId _id,
+            @RequestBody Movie movie
+    ) {
+        movie.set_id(_id);
+        movieServiceImpl.updateMovie(movie);
     }
 
+    @DeleteMapping("/movie/{id}")
+    public void removeMovie(@PathVariable("id") ObjectId id) {
+        movieServiceImpl.deleteMovie(id);
+    }
 }

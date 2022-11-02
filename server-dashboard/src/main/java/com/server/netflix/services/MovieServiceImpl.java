@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @Transactional
-public class MovieService implements MovieServiceRepository {
+public class MovieServiceImpl implements MovieServiceRepository {
     private final MovieRepository movieRepository;
 
     public List<Movie> getAllMovies() {

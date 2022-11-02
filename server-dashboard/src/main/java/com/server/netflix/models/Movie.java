@@ -40,11 +40,135 @@ public class Movie {
         this.duration = duration;
     }
 
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public boolean isSeries() {
+        return isSeries;
+    }
+
+    public void setSeries(boolean series) {
+        isSeries = series;
+    }
+
+    public boolean isDestroy() {
+        return isDestroy;
+    }
+
+    public void setDestroy(boolean destroy) {
+        isDestroy = destroy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
     public void setGenre(String genre) {
         this.genre = genre;
     }
 
+    public String getImgTitle() {
+        return imgTitle;
+    }
+
+    public void setImgTitle(String imgTitle) {
+        this.imgTitle = imgTitle;
+    }
+
+    public String getLimit() {
+        return limit;
+    }
+
     public void setLimit(String limit) {
         this.limit = limit;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "_id=" + _id +
+                ", title='" + title + '\'' +
+                ", img='" + img + '\'' +
+                ", isSeries=" + isSeries +
+                ", isDestroy=" + isDestroy +
+                ", description='" + description + '\'' +
+                ", genre='" + genre + '\'' +
+                ", imgTitle='" + imgTitle + '\'' +
+                ", limit='" + limit + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", trailer='" + trailer + '\'' +
+                ", video='" + video + '\'' +
+                ", year='" + year + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
     }
 }
