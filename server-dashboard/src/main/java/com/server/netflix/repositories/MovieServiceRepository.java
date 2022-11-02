@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MovieServiceRepository {
-    Movie createMovie(Movie movie);
+    Movie addMovie(Movie movie);
 
     List<Movie> getAllMovies();
 

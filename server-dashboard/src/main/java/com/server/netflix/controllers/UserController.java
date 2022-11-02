@@ -1,46 +1,50 @@
 package com.server.netflix.controllers;
 
 import com.server.netflix.models.User;
-import com.server.netflix.services.UserService;
+import com.server.netflix.services.UserServiceImpl;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @CrossOrigin
 public class UserController {
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @GetMapping("/users")
-    public List<User> getAllUser() {
-        return userService.getAllUsers();
+    public List<User> getAllUsers() {
+        return userServiceImpl.getAllUsers();
     }
 
-    @GetMapping("/user/{email}")
-    public User getUser(
-            @PathVariable("email") String email
+    @GetMapping("/user/{id}")
+    public Optional<User> getUser(
+            @PathVariable("id") ObjectId id
     ) {
-        return userService.getUser(email);
+        return userServiceImpl.getUserById(id);
     }
 
     @PostMapping("/user")
-    public User createUser() {
-        return userService.createUser();
-    }
-
-    @PutMapping("/user/update/{email}")
-    public void updateEmail(
-            @PathVariable("email") String email,
-            @RequestParam(required = false) String fullName,
-            @RequestParam(required = false) String phoneNumber
+    public User createUser(
+            @RequestBody User user
     ) {
-        userService.updateUser(email, fullName, phoneNumber);
+        return userServiceImpl.createUserAccount(user);
     }
 
-    @DeleteMapping("/user/{email}")
-    public void removeUser(@PathVariable("email") String email) {
-        userService.deleteUser(email);
+    @PutMapping("/user/update/{id}")
+    public void updateEmail(
+            @PathVariable("id") ObjectId id,
+            @RequestBody User user
+    ) {
+        user.set_id(id);
+        userServiceImpl.updateUserAccount(user);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public void removeUser(@PathVariable("id") ObjectId id) {
+        userServiceImpl.deleteUser(id);
     }
 }

@@ -31,7 +31,7 @@ public class MovieController {
     public Movie createMovie(
             @RequestBody Movie movie
     ) {
-        return movieServiceImpl.createMovie(movie);
+        return movieServiceImpl.addMovie(movie);
     }
 
     @PutMapping("/movie/update/{id}")

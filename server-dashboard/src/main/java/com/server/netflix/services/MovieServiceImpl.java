@@ -31,7 +31,7 @@ public class MovieServiceImpl implements MovieServiceRepository {
         }
     }
 
-    public Movie createMovie(Movie movie){
+    public Movie addMovie(Movie movie){
         return movieRepository.save(movie);
     }
 
