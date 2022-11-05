@@ -4,7 +4,6 @@ import com.server.netflix.models.Movie;
 import com.server.netflix.repositories.MovieRepository;
 import com.server.netflix.repositories.MovieServiceRepository;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,7 @@ public class MovieServiceImpl implements MovieServiceRepository {
     }
 
     @Override
-    public Optional<Movie> getMovieById(ObjectId id) {
+    public Optional<Movie> getMovieById(String id) {
         Optional<Movie> movie = movieRepository.findById(id);
         if (movie.isPresent()) {
             return movieRepository.findById(id);
@@ -58,7 +57,7 @@ public class MovieServiceImpl implements MovieServiceRepository {
         }
     }
 
-    public void deleteMovie(ObjectId id) {
+    public void deleteMovie(String id) {
         Optional<Movie> movie = movieRepository.findById(id);
         if (movie.isPresent()) {
             movieRepository.deleteById(id);

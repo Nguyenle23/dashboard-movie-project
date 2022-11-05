@@ -11,9 +11,9 @@ public interface MovieServiceRepository {
 
     List<Movie> getAllMovies();
 
-    Optional<Movie> getMovieById(ObjectId id);
+    Optional<Movie> getMovieById(String id);
 
     void updateMovie(Movie movie);
 
-    void deleteMovie(ObjectId id);
+    void deleteMovie(String id);
 }

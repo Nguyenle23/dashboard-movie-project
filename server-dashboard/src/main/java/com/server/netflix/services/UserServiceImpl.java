@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserServiceRepository {
     }
 
     @Override
-    public Optional<User> getUserById(ObjectId id) {
+    public Optional<User> getUserById(String id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return userRepository.findById(id);
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserServiceRepository {
         }
     }
 
-    public void deleteUser(ObjectId id) {
+    public void deleteUser(String id) {
         Optional<User> checkUser = userRepository.findById(id);
         if (checkUser.isPresent()) {
             userRepository.deleteById(id);

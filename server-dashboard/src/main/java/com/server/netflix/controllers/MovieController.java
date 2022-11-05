@@ -3,7 +3,6 @@ package com.server.netflix.controllers;
 import com.server.netflix.models.Movie;
 import com.server.netflix.services.MovieServiceImpl;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class MovieController {
 
     @GetMapping("/movie/{id}")
     public Optional<Movie> getMovie(
-            @PathVariable("id") ObjectId id
+            @PathVariable("id") String id
     ) {
         return movieServiceImpl.getMovieById(id);
     }
@@ -36,7 +35,7 @@ public class MovieController {
 
     @PutMapping("/movie/update/{id}")
     public void updateMovie(
-            @PathVariable("id") ObjectId _id,
+            @PathVariable("id") String _id,
             @RequestBody Movie movie
     ) {
         movie.set_id(_id);
@@ -44,7 +43,7 @@ public class MovieController {
     }
 
     @DeleteMapping("/movie/{id}")
-    public void removeMovie(@PathVariable("id") ObjectId id) {
+    public void removeMovie(@PathVariable("id") String id) {
         movieServiceImpl.deleteMovie(id);
     }
 }

@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public Optional<User> getUser(
-            @PathVariable("id") ObjectId id
+            @PathVariable("id") String id
     ) {
         return userServiceImpl.getUserById(id);
     }
@@ -36,7 +36,7 @@ public class UserController {
 
     @PutMapping("/user/update/{id}")
     public void updateEmail(
-            @PathVariable("id") ObjectId id,
+            @PathVariable("id") String id,
             @RequestBody User user
     ) {
         user.set_id(id);
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public void removeUser(@PathVariable("id") ObjectId id) {
+    public void removeUser(@PathVariable("id") String id) {
         userServiceImpl.deleteUser(id);
     }
 }
