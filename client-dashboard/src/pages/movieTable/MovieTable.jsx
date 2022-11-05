@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   DataGrid,
@@ -8,18 +8,28 @@ import {
   useGridSelector,
 } from "@mui/x-data-grid";
 import Pagination from "@mui/material/Pagination";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { getMovies, deleteMovie } from "../../context/movieContext/apiCall";
 
-// import "./movieTable.scss";
-import { fetchMovies } from "../../actions";
+import "./movieTable.scss";
 
 export default function MovieTable() {
-  const [movie, setMovie] = useState([]);
+  const { movies, dispatch } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMovies(dispatch);
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteMovie(id, dispatch);
+    window.location.href = "/movie";
+  };
 
   const columns = [
     {
       field: "_id",
       headerName: "ID",
-      width: 200,
+      width: 150,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
@@ -82,7 +92,7 @@ export default function MovieTable() {
     {
       field: "action",
       headerName: "Action",
-      width: 105,
+      width: 180,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
@@ -94,20 +104,17 @@ export default function MovieTable() {
             >
               <button className="productListEdit">Edit</button>
             </Link>
+            <p
+              className="productListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </p>
           </>
         );
       },
     },
   ];
-
-  useEffect(() => {
-    const getMovies = async () => {
-      fetchMovies().then((response) => {
-        setMovie(response.data);
-      });
-    };
-    getMovies();
-  }, []);
 
   function CustomPagination() {
     const apiRef = useGridApiContext();
@@ -136,9 +143,9 @@ export default function MovieTable() {
       </div>
       <div style={{ height: "75vh", width: "100%" }}>
         <DataGrid
-          rows={movie.map((item, index) => {
+          rows={movies.map((item) => {
             return {
-              id: index,
+              id: item._id,
               title: item.title,
               genre: item.genre,
               year: item.year,

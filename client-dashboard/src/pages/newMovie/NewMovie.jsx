@@ -6,7 +6,7 @@ import { createMovie } from "../../context/movieContext/apiCall";
 import { useState, useContext } from "react";
 
 export default function NewMovie() {
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState({});
   const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
@@ -14,10 +14,10 @@ export default function NewMovie() {
     setMovie({ ...movie, [e.target.name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
-    // history.push("/movies");
+    window.location.href="/movie";
   };
 
   return (
@@ -89,7 +89,7 @@ export default function NewMovie() {
                 <label>Is Serires ?</label>
                 <input
                   type="text"
-                  placeholder="Yes/No"
+                  placeholder="True/False"
                   name="isSeries"
                   id="isSeries"
                   onChange={handleChange}

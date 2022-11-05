@@ -1,23 +1,21 @@
 import "./newUser.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { UserContext } from "../../context/userContext/UserContext";
-// import { createUser } from "../../context/userContext/apiCall";
-import { useState, useContext } from "react";
+import { useState } from "react";
+import { createNewUser } from "../../actions";
 
 export default function NewUser() {
-  const [user, setUser] = useState(null);
-  const { dispatch } = useContext(UserContext);
+  const [user, setUser] = useState({});
 
   const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // createUser(user, dispatch);
-    // history.push("/movies");
+    await createNewUser(user);
+    window.location.href = "/users";
   };
 
   return (
@@ -83,7 +81,7 @@ export default function NewUser() {
                 <label>Is Admin</label>
                 <input
                   type="text"
-                  placeholder="Yes/No"
+                  placeholder="True/False"
                   name="admin"
                   onChange={handleChange}
                 />

@@ -4,31 +4,19 @@ import axios from 'axios';
 
 //get statistics table
 export const getStat = async() => {
-    const request = await axios.get(`http://localhost:5555/user/stats`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
+    const request = await axios.get(`http://localhost:5555/user/stats`)
     return request;
 }
 
 //get all new register users
 export const getUser = async() => {
-    const request = await axios.get(`http://localhost:5555/user?new=true`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
+    const request = await axios.get(`http://localhost:5555/user?new=true`)
     return request;
 }
 
 //get all new transaction users
 export const getTransaction = async() => {
-    const request = await axios.get(`http://localhost:5555/user/transaction`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
+    const request = await axios.get(`http://localhost:5555/user/transaction`)
     return request;
 }
 
@@ -47,74 +35,46 @@ export const fetchMovies = async() => {
 }
 
 //create movie
-export const uploadMovie = async(movie) => {
-    const request = await axios.post(`http://localhost:5555/movie/`, movie, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
-    return request;
+export const createNewMovie = async(data) => {
+    const response = await axios.post("http://localhost:8080/movie", data);
+    return response;
 }
 
 //update movie
 export const upgradeMovie = async(id, data) => {
-    const request = await axios.put(`http://localhost:5555/movie/${id}`, data, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
-    return request;
+    const response = await axios.put(`http://localhost:8080/movie/update/${id}`, data)
+    return response;
 }
 
 //delete solfly movie
 export const removeMovie = async(id) => {
-    const request = await axios.delete(`http://localhost:5555/movie/${id}`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
-    return request;
+    const response = await axios.delete(`http://localhost:8080/movie/${id}`);
+    return response;
 }
 
 //-----------list-----------------
 
 //fetch all lists
 export const fetchList = async() => {
-    const request = await axios.get(`http://localhost:5555/list/`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
+    const request = await axios.get(`http://localhost:5555/list/`);
     return request;
 }
 
 //create list
 export const uploadList = async(movie) => {
-    const request = await axios.post(`http://localhost:5555/list/`, movie, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
+    const request = await axios.post(`http://localhost:5555/list/`, movie)
     return request;
 }
 
 //update list
 export const upgradeList = async(id, data) => {
-    const request = await axios.put(`http://localhost:5555/list/${id}`, data, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
+    const request = await axios.put(`http://localhost:5555/list/${id}`, data)
     return request;
 }
 
 //delete solfly list
 export const removeList = async(id) => {
-    const request = await axios.delete(`http://localhost:5555/list/${id}`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
+    const request = await axios.delete(`http://localhost:5555/list/${id}`);
     return request;
 }
 
@@ -122,26 +82,24 @@ export const removeList = async(id) => {
 
 //get all user
 export const fetchAllUser = async() => {
-    const request = await axios.get("http://localhost:8080/users");
-    return request;
+    const response = await axios.get("http://localhost:8080/users");
+    return response;
+}
+
+//create user
+export const createNewUser = async(data) => {
+    const response = await axios.post("http://localhost:8080/user", data);
+    return response;
 }
 
 //update user
 export const upgradeUser = async(id, data) => {
-    const request = await axios.put(`http://localhost:5555/user/${id}`, data, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        }
-    });
-    return request;
+    const response = await axios.put(`http://localhost:8080/user/update/${id}`, data)
+    return response;
 }
 
 //delete user
 export const removeUser = async(id) => {
-    const request = await axios.delete(`http://localhost:5555/user/removeUser/${id}`, {
-        headers: {
-            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-        },
-    });
-    return request;
+    const response = await axios.delete(`http://localhost:8080/user/${id}`);
+    return response;
 }

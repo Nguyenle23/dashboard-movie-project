@@ -20,64 +20,16 @@ export default function UserTable() {
     getUsers(dispatch);
   }, [dispatch]);
 
-  // const handleDelete = (id) => {
-  //   deleteUsers(id, dispatch);
-  // };
-
-  // const columns = [
-  //   { field: "_id", headerName: "ID", width: 200 },
-  //   // {
-  //   //   field: "user",
-  //   //   headerName: "Avatar",
-  //   //   width: 120,
-  //   //   renderCell: (params) => {
-  //   //     return (
-  //   //       <div className="userListUser">
-  //   //         <img className="userListImg" src={params.row.avatar || "https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg"} alt="" />
-  //   //         {params.row.username}
-  //   //       </div>
-  //   //     );
-  //   //   },
-  //   // },
-  //   { field: "fullname", headerName: "Full name", width: 150 },
-  //   { field: "email", headerName: "Email", width: 200 },
-  //   { field: "gender", headerName: "Gender", width: 130 },
-  //   // { field: "location", headerName: "Location", width: 130 },
-  //   {
-  //     field: "isActive",
-  //     headerName: "Is Active",
-  //     width: 140,
-  //   },
-  //   {
-  //     field: "price",
-  //     headerName: "Total price",
-  //     width: 140,
-  //   },
-  //   {
-  //     field: "action",
-  //     headerName: "Action",
-  //     width: 130,
-  //     // renderCell: (params) => {
-  //     //   return (
-  //     //     <>
-  //     //       <Link to={{pathname: "/user/" + params.row._id, users: params.row}}>
-  //     //         <button className="userListEdit">Edit</button>
-  //     //       </Link>
-  //     //       {/* <DeleteOutline
-  //     //         className="userListDelete"
-  //     //         onClick={() => handleDelete(params.row._id)}
-  //     //       /> */}
-  //     //     </>
-  //     //   );
-  //     // },
-  //   },
-  // ];
+  const handleDelete = (id) => {
+    deleteUsers(id, dispatch);
+    window.location.href = "/user";
+  };
 
   const column = [
     {
       field: "id",
       headerName: "ID",
-      width: 70,
+      width: 150,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
     },
@@ -113,7 +65,7 @@ export default function UserTable() {
     {
       field: "phonenumber",
       headerName: "Phone Number",
-      width: 220,
+      width: 200,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
@@ -168,7 +120,7 @@ export default function UserTable() {
     {
       field: "action",
       headerName: "Action",
-      width: 210,
+      width: 150,
       headerClassName: "super-app-theme--header",
       cellClassName: "super-app-theme--cell",
       renderCell: (params) => {
@@ -181,7 +133,12 @@ export default function UserTable() {
             >
               <div className="cellAction_view">View</div>
             </Link>
-            <div className="cellAction_delete">Delete</div>
+            <p
+              className="productListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </p>
           </div>
         );
       },
@@ -216,9 +173,9 @@ export default function UserTable() {
       </div>
       <div style={{ height: "75vh", width: "100%" }}>
         <DataGrid
-          rows={users.map((user, index) => {
+          rows={users.map((user) => {
             return {
-              id: index,
+              id: user._id,
               email: user.email,
               fullName: user.fullName,
               gender: user.gender,

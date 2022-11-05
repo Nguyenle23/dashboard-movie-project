@@ -12,22 +12,14 @@ import {
     getMoviesStart,
     getMoviesSuccess,
 } from "./MovieAction";
-import { fetchMovies, uploadMovie, upgradeMovie, removeMovie } from '../../actions/index'
+import { fetchMovies, createNewMovie, upgradeMovie, removeMovie } from '../../actions/index'
 
 //get all movies
 export const getMovies = async(dispatch) => {
     dispatch(getMoviesStart());
     try {
         fetchMovies().then((res) => {
-            var render
-            const movieData = res.data
-            for (var i of movieData) {
-                if (i.isDestroy === true) {
-                    render = movieData.filter(movie => movie.isDestroy === false)
-                }
-                render = movieData.filter(movie => movie.isDestroy === false)
-            }
-            dispatch(getMoviesSuccess(render));
+            dispatch(getMoviesSuccess(res.data));
         })
     } catch (err) {
         dispatch(getMoviesFailure());
@@ -38,7 +30,7 @@ export const getMovies = async(dispatch) => {
 export const createMovie = async(movie, dispatch) => {
     dispatch(createMovieStart());
     try {
-        uploadMovie(movie).then((res) => {
+        createNewMovie(movie).then((res) => {
             dispatch(createMovieSuccess(res.data))
         })
     } catch (err) {
