@@ -1,15 +1,22 @@
 .chart { 
     flex: 5;
-    box-shadow: 1px 0px 27px -1px #7d7d7d27;
     padding: 10px;
     color: #000;
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: rgba(247, 179, 116, 0.514);
+    box-shadow: 1px 0px 27px -1px #1f1f1f7a;
+    border-radius:10px;
     .title { 
         font-size: 20px;
         font-weight: 500;
         margin-bottom: 20px;
         align-self: start;
     }
+}
+
+.chart:hover { 
+    -webkit-box-shadow: 1px 0px 27px -1px rgba(173, 173, 173, 0.765); 
+    box-shadow: 1px 0px 27px -1px rgba(245, 195, 195, 0.716);
 }

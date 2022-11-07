@@ -3,20 +3,18 @@
     box-shadow: 1px 0px 27px -1px #1f1f1f7a;
     background-color: rgba(247, 179, 116, 0.514);
     color: #000;
-    
+    border-radius: 10px;
     .feature_top { 
         display: flex;
         align-items: center;
         justify-content: space-between;
         color: #000;
-
         .title { 
             font-size: 26px;
             font-weight: bold;
             padding: 15px;
         }
     }
-
     .feature_bottom {
         padding: 20px;
         display: flex;
@@ -24,68 +22,56 @@
         align-items: center;
         justify-content: center;
         gap: 15px;
-
         .fetureChart { 
             width: 100px;
             height: 100px;
         }
-
         .title { 
             font-weight: 500;
             color: #000;
         }
-
         .value {
             font-size: 30px;
         }
-
         .desc { 
             font-size: 16px;
             color: #000;
             text-align: center;
         }
-
         .last { 
-
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             .item { 
                 text-align: center;
-
                 .itemTitle { 
                     font-size: 16px;
                     color: #555;
                     
                 }
-
                 .itemResult { 
                     
                     display: flex;
                     align-items: center;
                     margin-top: 15px;
-
                     .value { 
                         font-size: 22px;
                         font-weight: 500;
                     }
-
                     &.positive { 
                         color: green;
                     }
                     &.negative {  
                         color: red;
                     }
-
-                    
-
                 }
             }
         }
-
-
     }
+}
 
+.feature:hover { 
+    -webkit-box-shadow: 1px 0px 27px -1px rgba(173, 173, 173, 0.765); 
+    box-shadow: 1px 0px 27px -1px rgba(245, 195, 195, 0.716);
 }

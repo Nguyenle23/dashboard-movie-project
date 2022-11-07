@@ -28,7 +28,7 @@ export default function User() {
   const handleSubmit = (e) => {
     e.preventDefault();
     updateUser(user.id, updateUserObject, dispatch);
-    window.location.href = "/users";
+    window.location.href = "/user";
   };
 
   return (

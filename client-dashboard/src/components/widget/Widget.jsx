@@ -7,13 +7,10 @@ import ShoppingCartOutlinedIcon  from '@mui/icons-material/ShoppingCartOutlined'
 
 import './widget.scss'
 
-const Widget = ({ senerio }) => {
-
+export default function Widget({ senerio }) {
     let data;
-
     const amount = 100;
     const diff = 20;
-    
     switch (senerio) {
         case "user": 
             data = { 
@@ -51,24 +48,22 @@ const Widget = ({ senerio }) => {
         break;
     }
 
-  return (
-    <div className='widget'>
-        <div className="widget_left">
-            <span className="tilte">{data.title}</span>
-            <span className="counter">
-                {data.isMoney && "$"} {amount}
-            </span>
-            <span className="link">{data.link}</span>
-        </div>
-        <div className="widget_right">
-            <div className="statistic negative">
-                <KeyboardArrowDownIcon   />
-                {diff} % 
+    return (
+        <div className='widget'>
+            <div className="widget_left">
+                <span className="tilte">{data.title}</span>
+                <span className="counter">
+                    {data.isMoney && "$"} {amount}
+                </span>
+                <span className="link">{data.link}</span>
             </div>
-            {/* <data.icon /> */}
+            <div className="widget_right">
+                <div className="statistic negative">
+                    <KeyboardArrowDownIcon   />
+                    {diff} % 
+                </div>
+                {/* <data.icon /> */}
+            </div>
         </div>
-    </div>
-  )
+    )
 }
-
-export default Widget;
