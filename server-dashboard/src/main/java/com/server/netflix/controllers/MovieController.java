@@ -1,8 +1,10 @@
 package com.server.netflix.controllers;
 
+import com.server.netflix.config.ResourceNotFoundException;
 import com.server.netflix.models.Movie;
 import com.server.netflix.services.MovieServiceImpl;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +22,9 @@ public class MovieController {
     }
 
     @GetMapping("/movie/{id}")
-    public Optional<Movie> getMovie(
+    public ResponseEntity<Movie> getMovie(
             @PathVariable("id") String id
-    ) {
+    ) throws ResourceNotFoundException {
         return movieServiceImpl.getMovieById(id);
     }
 

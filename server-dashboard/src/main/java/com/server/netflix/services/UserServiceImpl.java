@@ -4,7 +4,6 @@ import com.server.netflix.models.User;
 import com.server.netflix.repositories.UserRepository;
 import com.server.netflix.repositories.UserServiceRepository;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserServiceRepository {
         if (user.isPresent()) {
             return userRepository.findById(id);
         } else {
-            throw new IllegalStateException("User with id " + id + "does not exist");
+            throw new IllegalStateException("User with id " + id + " does not exist");
         }
     }
 
@@ -42,19 +41,52 @@ public class UserServiceImpl implements UserServiceRepository {
 
     @Override
     public void updateUserAccount(User user) {
-        Optional<User> checkUser = this.userRepository.findById(user.get_id());
-
-        if (checkUser.isPresent()) {
-            User userData = checkUser.get();
-            userData.setEmail(user.getEmail());
-            userData.setFullName(user.getFullName());
-            userData.setPassword(user.getPassword());
-            userData.setGender(user.getGender());
-            userData.setLocation(user.getLocation());
-            userData.setAvatar(user.getAvatar());
-            userData.setDestroy(user.isDestroy());
-            userData.setAdmin(user.isAdmin());
-            userRepository.save(userData);
+        Optional<User> findUser = this.userRepository.findById(user.get_id());
+        User updateUser = findUser.get();
+        if (findUser.isPresent()) {
+            if (user.getEmail() != null) {
+                updateUser.setEmail(user.getEmail());
+                userRepository.save(updateUser);
+            }
+            if (user.getFullName() != null) {
+                updateUser.setFullName(user.getFullName());
+                userRepository.save(updateUser);
+            }
+            if (user.getPassword() != null) {
+                updateUser.setPassword(user.getPassword());
+                userRepository.save(updateUser);
+            }
+            if (user.getGender() != null) {
+                updateUser.setGender(user.getGender());
+                userRepository.save(updateUser);
+            }
+            if (user.getLocation() != null) {
+                updateUser.setLocation(user.getLocation());
+                userRepository.save(updateUser);
+            }
+            if (user.getAvatar() != null) {
+                updateUser.setAvatar(user.getAvatar());
+                userRepository.save(updateUser);
+            }
+            if (user.getFullName() != null) {
+                updateUser.setFullName(user.getFullName());
+                userRepository.save(updateUser);
+            }
+            if (user.isAdmin() != false) {
+                updateUser.setAdmin(!user.isAdmin());
+                userRepository.save(updateUser);
+            } else {
+                updateUser.setAdmin(user.isAdmin());
+                userRepository.save(updateUser);
+            }
+            if (user.isDestroy() != false) {
+                updateUser.setDestroy(!user.isDestroy());
+                userRepository.save(updateUser);
+            } else {
+                updateUser.setDestroy(user.isDestroy());
+                userRepository.save(updateUser);
+            }
+            userRepository.save(updateUser);
         } else {
             throw new IllegalStateException("User with id " + user.get_id() + "does not exist");
         }
