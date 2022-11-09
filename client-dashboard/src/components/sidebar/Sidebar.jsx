@@ -2,13 +2,13 @@ import './sidebar.scss'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import UpcomingIcon from '@mui/icons-material/Upcoming';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import DnsIcon from '@mui/icons-material/Dns';
-import SettingsIcon from '@mui/icons-material/Settings';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
+// import UpcomingIcon from '@mui/icons-material/Upcoming';
+// import QueryStatsIcon from '@mui/icons-material/QueryStats';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
+// import DnsIcon from '@mui/icons-material/Dns';
+// import SettingsIcon from '@mui/icons-material/Settings';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -46,7 +46,7 @@ const Sidebar = () => {
                     <span>Movies</span>
                     </li>
                 </Link>
-                <p className="title">STATISTIC</p>
+                {/* <p className="title">STATISTIC</p>
                 <li>
                     <UpcomingIcon className='center_logo' />
                     <span>Upcoming</span>
@@ -76,16 +76,11 @@ const Sidebar = () => {
                 <li>
                     <LogoutIcon className='center_logo' />
                     <span>Logout</span>
-                </li>
+                </li> */}
             </ul>
         </div>
-        {/* <div className="bottom">
-            <div className="color_option"></div>
-            <div className="color_option"></div>
-            <div className="color_option"></div>
-        </div> */}
     </div>
-  )
+    )
 }
 
 export default Sidebar

@@ -1,7 +1,6 @@
 import "./userList.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Datatable from "../../components/datatable/Datatable";
 import UserTable from "../userTable/UserTable";
 
 export default function UserList() {
@@ -11,7 +10,6 @@ export default function UserList() {
       <div className="list_container">
         <Navbar />
         <div className="list_content">
-          {/* <Datatable /> */}
           <UserTable />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import "./navbar.scss"
-import { LanguageOutlined } from "@mui/icons-material"
-import { ListOutlined } from "@mui/icons-material"
-import { Notifications } from "@mui/icons-material"
+// import { LanguageOutlined } from "@mui/icons-material"
+// import { ListOutlined } from "@mui/icons-material"
+// import { Notifications } from "@mui/icons-material"
 
 const Navbar = () => {
     return (
@@ -13,21 +13,21 @@ const Navbar = () => {
                 </div> */}
                 
                 <div className="navbar_items_container">
-                    <div className="navbar_item">
+                    {/* <div className="navbar_item">
                         <LanguageOutlined className="navbar_item_logo" />
                         English
                     </div>
                     <div className="navbar_item">
-                        {/* <div className="counter_num">3</div>     */}
+                        <div className="counter_num">3</div>    
                         <Notifications className="navbar_item_logo" />  
                         Notification
                     </div>
                     <div className="navbar_item">
                         <ListOutlined className="navbar_item_logo" />
                         Menu
-                    </div>
+                    </div> */}
                     <div className="navbar_item">
-                        <img className="navbar_item_avt" src="https://yt3.ggpht.com/P3tOClgDrGcPFc1m4r4VGEyqixLOVJwURacauwlpNMI7opjW4jPoYnzXsVrl-Spz30fmzJTv=s176-c-k-c0x00ffffff-no-rj" alt="" />
+                        <img className="navbar_item_avt" src="https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg" alt="avatar" />
                     </div>
                 </div>
             </div>

@@ -4,7 +4,6 @@ import { useState, useContext } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
-import Table from "../../components/table/Table";
 
 import "./user.scss";
 import { UserContext } from "../../context/userContext/UserContext";
@@ -119,10 +118,10 @@ export default function User() {
             <Chart aspect={3 / 1} title="User Spend (last year)" />
           </div>
         </div>
-        <div className="single_bottom">
+        {/* <div className="single_bottom">
           <h1 className="single_bottom_title">Last Access</h1>
-          <Table />
-        </div>
+
+        </div> */}
       </div>
     </div>
   );

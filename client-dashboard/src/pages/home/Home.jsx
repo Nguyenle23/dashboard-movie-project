@@ -5,7 +5,6 @@ import Widget from "../../components/widget/Widget";
 import "./home.scss";
 import Feature from "../../components/feature/Feature";
 import Chart from "../../components/chart/Chart";
-import Table from "../../components/table/Table";
 
 export default function Home() {
   return (
@@ -25,7 +24,6 @@ export default function Home() {
             </div>
             {/* <div className="listContainer">
               <div className="listContainer_title">Latest Transaction</div>
-              <Table />
             </div> */}
         </div>
     </div>

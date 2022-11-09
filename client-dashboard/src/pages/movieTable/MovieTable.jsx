@@ -104,12 +104,12 @@ export default function MovieTable() {
             >
               <button className="productListEdit">Edit</button>
             </Link>
-            <p
+            <button
               className="productListDelete"
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
-            </p>
+            </button>
           </>
         );
       },

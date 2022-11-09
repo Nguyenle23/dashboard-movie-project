@@ -3,7 +3,6 @@ import { useState, useContext } from "react";
 
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Table from "../../components/table/Table";
 
 import "./movie.scss";
 import { MovieContext } from "../../context/movieContext/MovieContext";
@@ -113,10 +112,9 @@ export default function Movie() {
           </div>
           {/* <div className="single_top_right"></div> */}
         </div>
-        <div className="single_bottom">
+        {/* <div className="single_bottom">
           <h1 className="single_bottom_title">Last Access</h1>
-          <Table />
-        </div>
+        </div> */}
       </div>
     </div>
   );

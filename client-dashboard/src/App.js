@@ -11,7 +11,6 @@ import {
   Route,
 } from "react-router-dom";
 
-// import './components/style/dark.scss';
 import Movie from "./pages/movie/Movie";
 
 function App() {

@@ -1,5 +1,5 @@
 import "./chart.scss";
-import React, { PureComponent } from "react";
+import React from "react";
 import {
   LineChart,
   Line,

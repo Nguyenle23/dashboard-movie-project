@@ -133,12 +133,12 @@ export default function UserTable() {
             >
               <div className="cellAction_view">View</div>
             </Link>
-            <p
+            <button
               className="productListDelete"
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
-            </p>
+            </button>
           </div>
         );
       },
